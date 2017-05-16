@@ -1,17 +1,20 @@
-# D3 Calendar Heatmap
+# D3 Calendar Heatmap Mini
 
 This code was originally forked from `https://github.com/DKirwan/calendar-heatmap` and modified. This
 serves to publish the package to `npm` as `calendar-heatmap-mini` along with a few key differences.
 
 Changes:
+* [DONE] `npm` installable as well as importable as a module.
 * [DONE] Update to the latest `d3@4.8.0`
   * Trim down to specific `d3` packages.
+* [DONE] Data is auto initialized if none is presented.
+* [DONE] When updating the same instance of a heatmap, previous `max` size is not used.
 * [DONE] Use SVG `text` for tooltips.
-* [TODO] Remove `moment` dependency.
-* [TODO] Move into a non-forked version of the repository.
+* [DONE] Move into a non-forked version of the repository.
   * Rework project structure into the appropriate name (`calendar-heatmap-mini`).
+* [TODO] Remove `moment` dependency.
 
-A [d3.js](https://d3js.org/) heatmap representing time series data. Inspired by Github's contribution chart
+A [d3.js](https://d3js.org/) heatmap representing time series data. Inspired by Github's contribution chart.
 
 ![Reusable D3.js Calendar Heatmap chart](https://raw.githubusercontent.com/DKirwan/calendar-heatmap/develop/example/thumbnail.png)
 
@@ -19,7 +22,7 @@ A [d3.js](https://d3js.org/) heatmap representing time series data. Inspired by 
 
 |Property        | Usage           | Default  | Required |
 |:------------- |:-------------|:-----:|:-----:|
-| data | Chart data | none | yes |
+| data | Chart data | none | no |
 | selector | DOM selector to attach the chart to | body | no |
 | max | Maximum count | max found in data | no |
 | startDate | Date to start heatmap at | 1 year ago | no |
