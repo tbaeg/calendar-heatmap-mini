@@ -1,6 +1,6 @@
 {
   "name": "calendar-heatmap-mini",
-  "version": "0.4.1",
+  "version": "1.0.0",
   "description": "A d3.js heatmap representing time series data. Inspired by Github's contribution chart.",
   "main": "src/calendar-heatmap-mini.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tbaeg/calendar-heatmap.git"
+    "url": "git+https://github.com/tbaeg/calendar-heatmap-mini.git"
   },
   "author": "tbaeg1@gmail.com",
   "contributors": [
@@ -17,9 +17,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tbaeg/calendar-heatmap/issues"
+    "url": "https://github.com/tbaeg/calendar-heatmap-mini/issues"
   },
-  "homepage": "https://github.com/tbaeg/calendar-heatmap#readme",
+  "homepage": "https://github.com/tbaeg/calendar-heatmap-mini#readme",
   "dependencies": {
     "d3-selection": "1.0.6",
     "d3-time": "1.0.6",
