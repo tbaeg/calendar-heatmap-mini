@@ -1,5 +1,5 @@
 if (typeof define === 'function' && define.amd) {
-  define(['d3'], function () {
+  define(['d3-array', 'd3-scale', 'd3-selection', 'd3-time'], function () {
     'use strict';
 
     return calendarHeatmap;
