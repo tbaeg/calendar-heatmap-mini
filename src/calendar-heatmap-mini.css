@@ -1,0 +1,20 @@
+text.month-name,
+text.calendar-heatmap-legend-text,
+text.day-initial {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+}
+
+text.day-cell-tooltip {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #000000;
+}
+rect.day-cell:hover {
+  stroke: #555555;
+  stroke-width: 1px;
+}
+.calendar-heatmap {
+  box-sizing: initial;
+}
