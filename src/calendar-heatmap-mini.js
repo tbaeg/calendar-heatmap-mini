@@ -132,7 +132,6 @@ function calendarHeatmap() {
 
     var tooltip;
     var dayRects;
-    var selectedDay;
 
     drawChart();
 
@@ -163,6 +162,8 @@ function calendarHeatmap() {
         })
         .each(function (d, i, g) {
           var dayRect = d3.select(this);
+          var selectedDay;
+          var dummyTooltip = null;
 
           if (typeof onClick === 'function') {
             dayRect.on('click', function (d) {
@@ -181,19 +182,34 @@ function calendarHeatmap() {
           if (chart.tooltipEnabled()) {
             dayRect
               .on('mouseover', function (d, i) {
-                var x = parseInt(this.getAttribute('x')) - 50;
-                var y = parseInt(this.getAttribute('y')) - 5;
+                var x = parseInt(this.getAttribute('x'));
+                var y = parseInt(this.getAttribute('y')) - SQUARE_PADDING;
+                var tooltipLabel = tooltipText(d);
+
+                // append an invisible svg text element for pre-calculating width
+                dummyTooltip = svg.append('text')
+                    .style('visibility', 'hidden')
+                    .text(tooltipLabel);
+
+                var tooltipBBox = dummyTooltip.node().getBBox();
+                var svgBBox = svg.node().getBBox();
 
                 tooltip = svg.append('text')
-                  .attr('class', 'day-cell-tooltip')
-                  .attr('fill', 'black')
-                  .attr('width', 10)
-                  .attr('height', 5)
-                  .attr('x', x)
-                  .attr('y', y)
-                  .text(tooltipText(d));
+                    .attr('class', 'day-cell-tooltip')
+                    .attr('fill', 'black')
+                    .attr('height', 5)
+                    .attr('x', function () {
+                      var spaceTaken = x + tooltipBBox.width;
+                      if (spaceTaken > svgBBox.width) {
+                        return x - (spaceTaken - svgBBox.width);
+                      }
+                      return x;
+                    })
+                    .attr('y', y)
+                    .text(tooltipLabel);
               })
               .on('mouseout', function (d, i) {
+                dummyTooltip.remove();
                 tooltip.remove();
               });
           }
