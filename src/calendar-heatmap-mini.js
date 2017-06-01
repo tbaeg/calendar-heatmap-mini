@@ -117,7 +117,7 @@ function calendarHeatmap() {
     var firstDate = moment(dateRange[0]);
     // initialize data with 0 counts if there is none
     if (chart.data().length === 0) {
-      var chartData = d3.timeDays(yearAgo, now).map((dateElement) => {
+      var chartData = d3.timeDays(yearAgo, now).map(function (dateElement) {
         return { date: dateElement, count: 0 };
       });
       chart.data(chartData);
