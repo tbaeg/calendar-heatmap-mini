@@ -194,7 +194,7 @@ function calendarHeatmapMini() {
                 tooltip = svg.append('g');
 
                 tooltip.append('rect')
-                  .attr('fill', colorRange[0])
+                  .attr('fill', color(0))
                   .attr('rx', '2')
                   .attr('ry', '2')
                   .attr('height', tooltipBBox.height + (SQUARE_PADDING * 2))
@@ -208,7 +208,7 @@ function calendarHeatmapMini() {
                   })
                   .attr('y', y - 12)
                   .style('stroke-width', '1')
-                  .style('stroke', colorRange[1]);
+                  .style('stroke', color(max));
 
                 tooltip.append('text')
                   .attr('class', 'day-cell-tooltip')
