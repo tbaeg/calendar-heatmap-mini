@@ -198,11 +198,11 @@ function calendarHeatmapMini() {
                   .attr('rx', '2')
                   .attr('ry', '2')
                   .attr('height', tooltipBBox.height + (SQUARE_PADDING * 2))
-                  .attr('width', tooltipBBox.width)
+                  .attr('width', tooltipBBox.width + (SQUARE_PADDING * 2))
                   .attr('x', function () {
                     var spaceTaken = x + tooltipBBox.width;
                     if (spaceTaken > svgBBox.width) {
-                      return x - (spaceTaken - svgBBox.width);
+                      return x - (spaceTaken - svgBBox.width) - SQUARE_PADDING;
                     }
                     return x;
                   })
@@ -220,7 +220,7 @@ function calendarHeatmapMini() {
                     if (spaceTaken > svgBBox.width) {
                       return x - (spaceTaken - svgBBox.width);
                     }
-                    return x;
+                    return x + SQUARE_PADDING;
                   })
                   .attr('y', y)
                   .text(tooltipLabel);
