@@ -319,7 +319,7 @@ function calendarHeatmapMini() {
     function tooltipText(d) {
       var dateStr = moment(d).format('MM/DD/YY');
       var count = countForDate(d);
-      return (count ? count : locale.No) + ' ' + pluralizedTooltipUnit(count) + ' ' + locale.on + ' ' + dateStr;
+      return (count ? count.toLocaleString() : locale.No) + ' ' + pluralizedTooltipUnit(count) + ' ' + locale.on + ' ' + dateStr;
     }
 
     function countForDate(d) {
