@@ -127,7 +127,6 @@ function calendarHeatmapMini() {
       .range(chart.colorRange())
       .domain([0, max]);
 
-    var tooltip;
     var dayRects;
 
     drawChart();
@@ -159,7 +158,8 @@ function calendarHeatmapMini() {
         .each(function (d, i, g) {
           var dayRect = d3.select(this);
           var selectedDay;
-          var dummyTooltip = null;
+          var dummyTooltip;
+          var tooltip;
 
           if (typeof onClick === 'function') {
             dayRect.on('click', function (d) {
@@ -184,25 +184,46 @@ function calendarHeatmapMini() {
 
                 // append an invisible svg text element for pre-calculating width
                 dummyTooltip = svg.append('text')
+                    .attr('class', 'day-cell-tooltip')
                     .style('visibility', 'hidden')
                     .text(tooltipLabel);
 
                 var tooltipBBox = dummyTooltip.node().getBBox();
                 var svgBBox = svg.node().getBBox();
 
-                tooltip = svg.append('text')
-                    .attr('class', 'day-cell-tooltip')
-                    .attr('fill', 'black')
-                    .attr('height', 5)
-                    .attr('x', function () {
-                      var spaceTaken = x + tooltipBBox.width;
-                      if (spaceTaken > svgBBox.width) {
-                        return x - (spaceTaken - svgBBox.width);
-                      }
-                      return x;
-                    })
-                    .attr('y', y)
-                    .text(tooltipLabel);
+                tooltip = svg.append('g');
+
+                tooltip.append('rect')
+                  .attr('fill', colorRange[0])
+                  .attr('rx', '2')
+                  .attr('ry', '2')
+                  .attr('height', tooltipBBox.height + (SQUARE_PADDING * 2))
+                  .attr('width', tooltipBBox.width)
+                  .attr('x', function () {
+                    var spaceTaken = x + tooltipBBox.width;
+                    if (spaceTaken > svgBBox.width) {
+                      return x - (spaceTaken - svgBBox.width);
+                    }
+                    return x;
+                  })
+                  .attr('y', y - 12)
+                  .style('stroke-width', '1')
+                  .style('stroke', colorRange[1]);
+
+                tooltip.append('text')
+                  .attr('class', 'day-cell-tooltip')
+                  .attr('fill', 'black')
+                  .attr('height', tooltipBBox.height)
+                  .attr('width', tooltipBBox.width)
+                  .attr('x', function () {
+                    var spaceTaken = x + tooltipBBox.width;
+                    if (spaceTaken > svgBBox.width) {
+                      return x - (spaceTaken - svgBBox.width);
+                    }
+                    return x;
+                  })
+                  .attr('y', y)
+                  .text(tooltipLabel);
               })
               .on('mouseout', function (d, i) {
                 dummyTooltip.remove();
