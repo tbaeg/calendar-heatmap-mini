@@ -1,0 +1,99 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Heatmap Example</title>
+    <meta name="description" content="calendar-heatmap-mini example">
+    <meta name="author" content="Tony Baeg">
+
+    <link rel="stylesheet" href="../src/calendar-heatmap-mini.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    <div id="heatmap" style="width: 500px;"></div>
+    <div id="heatmap1" style="width: 700px;"></div>
+    <div id="heatmap2" style="width: 800px;"></div>
+    <div id="heatmap3" style="width: 1000px;"></div>
+    <div id="heatmap4" style="width: 1100px;"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.js"></script>
+    <script src="../src/calendar-heatmap-mini.js"></script>
+    <script>
+        var now = moment().endOf('day').toDate();
+        var yearAgo = moment().startOf('day').subtract(1, 'year').toDate();
+        var chartData = d3.timeDays(yearAgo, now).map(function (dateElement) {
+            return {
+                date: dateElement,
+                count: (dateElement.getDay() !== 0 && dateElement.getDay() !== 6) ? Math.floor(Math.random() * 60) : Math.floor(Math.random() * 10)
+            };
+        });
+
+        var chart = calendarHeatmapMini()
+            .data(chartData)
+            .selector('#heatmap')
+            .colorRange(['#D8E6E7', '#218380'])
+            .tooltipEnabled(true)
+            .legendEnabled(true)
+            .onClick(function (data) {
+                console.log('onClick callback. Data:', data);
+            });
+
+        chart();
+
+        var chart1 = calendarHeatmapMini()
+            .data(chartData)
+            .selector('#heatmap1')
+            .colorRange(['#D8E6E7', '#218380'])
+            .tooltipEnabled(true)
+            .legendEnabled(true)
+            .onClick(function (data) {
+                console.log('onClick callback. Data:', data);
+            });
+
+        chart1();
+
+        var chart2 = calendarHeatmapMini()
+            .data(chartData)
+            .selector('#heatmap2')
+            .colorRange(['#D8E6E7', '#218380'])
+            .tooltipEnabled(true)
+            .legendEnabled(true)
+            .onClick(function (data) {
+                console.log('onClick callback. Data:', data);
+            });
+
+        chart2();
+
+        var chart3 = calendarHeatmapMini()
+            .data(chartData)
+            .selector('#heatmap3')
+            .colorRange(['#D8E6E7', '#218380'])
+            .tooltipEnabled(true)
+            .legendEnabled(true)
+            .onClick(function (data) {
+                console.log('onClick callback. Data:', data);
+            });
+
+        chart3();
+
+        var chart4 = calendarHeatmapMini()
+            .data(chartData)
+            .selector('#heatmap4')
+            .colorRange(['#D8E6E7', '#218380'])
+            .tooltipEnabled(true)
+            .legendEnabled(true)
+            .onClick(function (data) {
+                console.log('onClick callback. Data:', data);
+            });
+
+        chart4();
+    </script>
+</body>
+
+</html>

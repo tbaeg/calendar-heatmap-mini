@@ -2,12 +2,12 @@ if (typeof define === 'function' && define.amd) {
   define(['d3-array', 'd3-scale', 'd3-selection', 'd3-time'], function () {
     'use strict';
 
-    return calendarHeatmap;
+    return calendarHeatmapMini;
   });
 } else if (typeof module === 'object' && module.exports) {
-  module.exports = calendarHeatmap;
+  module.exports = calendarHeatmapMini;
 } else {
-  window.CalendarHeatMap = calendarHeatmap;
+  window.CalendarHeatMapMini = calendarHeatmapMini;
 }
 
 var d3 = typeof require === 'function' ? Object.assign({},
@@ -17,11 +17,8 @@ var d3 = typeof require === 'function' ? Object.assign({},
   require('d3-time')) : window.d3;
 var moment = typeof require === 'function' ? require('moment') : window.moment;
 
-function calendarHeatmap() {
+function calendarHeatmapMini() {
   // defaults
-  var width = 825;
-  var height = 125;
-  var legendWidth = 150;
   var selector = 'body';
   var SQUARE_LENGTH = 12;
   var SQUARE_PADDING = 3;
@@ -139,9 +136,8 @@ function calendarHeatmap() {
       var svg = d3.select(chart.selector())
         .style('position', 'relative')
         .append('svg')
-        .attr('width', width)
         .attr('class', 'calendar-heatmap-mini')
-        .attr('height', height);
+        .attr('viewBox', legendEnabled ? '-15 -15 825 160' : '-15 -15 825 135')
 
       dayRects = svg.selectAll('.day-cell')
         .data(dateRange); // array of days for the last yr
@@ -221,6 +217,11 @@ function calendarHeatmap() {
           colorRange.push(color(max / i));
         }
 
+        var svgBBox = svg.node().getBBox();
+        var width = svgBBox.width;
+        var height = svgBBox.height + (SQUARE_PADDING * 7);
+        var legendWidth = (SQUARE_LENGTH + SQUARE_PADDING) * 7;
+
         var legendGroup = svg.append('g');
         legendGroup.selectAll('.calendar-heatmap-mini-legend')
           .data(colorRange)
@@ -235,7 +236,7 @@ function calendarHeatmap() {
 
         legendGroup.append('text')
           .attr('class', 'calendar-heatmap-mini-legend-text calendar-heatmap-mini-legend-text-less')
-          .attr('x', width - legendWidth - 13)
+          .attr('x', width - legendWidth - 20)
           .attr('y', height + SQUARE_LENGTH)
           .text(locale.Less);
 
