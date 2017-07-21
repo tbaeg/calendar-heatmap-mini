@@ -31,6 +31,7 @@ A [d3.js](https://d3js.org/) heatmap representing time series data. Inspired by 
 | tooltipUnit | Unit to render on the tooltip, can be object for pluralization control | 'contributions' | no |
 | legendEnabled | Option to render a legend | true | no |
 | onClick | callback function on day click events (see example below) | null | no |
+| singleSelection | Option to only be able to select a single date | false | no |
 | locale | Object to translate every word used, except for tooltipUnit | see below | no |
 
 ### Default locale object

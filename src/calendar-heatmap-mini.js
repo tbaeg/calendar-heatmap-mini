@@ -32,6 +32,7 @@ function calendarHeatmapMini() {
   var tooltipEnabled = true;
   var tooltipUnit = 'Event';
   var legendEnabled = true;
+  var singleSelection = false;
   var onClick = null;
   var weekStart = 0; //0 for Sunday, 1 for Monday
   var locale = {
@@ -99,6 +100,12 @@ function calendarHeatmapMini() {
     return chart;
   };
 
+  chart.singleSelection = function (value) {
+    if (!arguments.length) { return singleSelection; }
+    singleSelection = value;
+    return chart;
+  };
+
   chart.locale = function (value) {
     if (!arguments.length) { return locale; }
     locale = value;
@@ -163,6 +170,12 @@ function calendarHeatmapMini() {
 
           if (typeof onClick === 'function') {
             dayRect.on('click', function (d) {
+
+              if (chart.singleSelection()) {
+                // Unselect any previously selected boxes
+                d3.select(chart.selector()).selectAll(".day-cell").style('stroke', null);
+              }
+
               if (selectedDay) {
                 selectedDay.style('stroke', null);
               }
