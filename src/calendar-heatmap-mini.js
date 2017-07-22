@@ -32,7 +32,7 @@ function calendarHeatmapMini() {
   var tooltipEnabled = true;
   var tooltipUnit = 'Event';
   var legendEnabled = true;
-  var singleSelection = false;
+  var singleSelection = true;
   var onClick = null;
   var weekStart = 0; //0 for Sunday, 1 for Monday
   var locale = {
