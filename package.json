@@ -21,10 +21,10 @@
   },
   "homepage": "https://github.com/tbaeg/calendar-heatmap-mini#readme",
   "dependencies": {
-    "d3-array": "1.2.0",
-    "d3-scale": "1.0.5",
-    "d3-selection": "1.0.6",
-    "d3-time": "1.0.6",
+    "d3-array": "1.2.4",
+    "d3-scale": "2.1.2",
+    "d3-selection": "1.3.2",
+    "d3-time": "1.0.10",
     "moment": "^2.22.2"
   }
 }
