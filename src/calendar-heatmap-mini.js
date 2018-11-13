@@ -220,6 +220,8 @@ function calendarHeatmapMini() {
                     return x;
                   })
                   .attr('y', y - 12)
+                  .attr('class', 'day-cell-tooltip-rect')
+                  .style('pointer-events', 'none')
                   .style('stroke-width', '1')
                   .style('stroke', chart.colorRange()[1]);
 
